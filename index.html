@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Oladapo Adeduro - Academic Portfolio</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #1a4b8c;
+            --accent: #2a6e5f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            background-color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #153a6e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline-primary {
+            color: var(--secondary);
+            border-color: var(--secondary);
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* UPDATED PROFILE IMAGE STYLES */
+        .profile-img-container {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 0 auto 30px;
+            overflow: hidden;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* About Section */
+        .about-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+        }
+        
+        .timeline {
+            position: relative;
+            margin-top: 30px;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 3px;
+            background: var(--accent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-icon {
+            position: absolute;
+            left: 8px;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        /* Skills Section */
+        .skills {
+            background-color: #f8f9fa;
+        }
+        
+        .skill-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .progress {
+            height: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            background-color: var(--accent);
+        }
+        
+        /* Projects Section */
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            background: white;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent);
+        }
+        
+        /* Teaching Section */
+        .teaching-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .level-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        /* Publications Section */
+        .publication-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pub-type {
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info {
+            padding: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .profile-img-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .about-content {
+                padding: 25px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Dr. Adeduro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="#" id="downloadCV">Download CV</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <!-- UPDATED PROFILE IMAGE CONTAINER -->
+                    <div class="profile-img-container">
+                        <!-- Replace the src attribute below with your image path -->
+                        <img src="img/dapo.jpg" class="profile-img" alt="Dr. Oladapo Adeduro">
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3">Dr. Oladapo Adeduro</h1>
+                    <p class="lead mb-4">Head of Department, Cybersecurity | Researcher | Educator</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#research" class="btn btn-primary btn-lg">View Research</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Academic Profile</h2>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Academic Background</h3>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h5>Ph.D. in Cyber Security</h5>
+                                            <p class="text-muted">Babcock University</p>
+                                            <p>Thesis: <em>Hybrid-Based Cryptographic Algorithm for Cloud Data Security</em></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h5>M.Sc. in Computer Science</h5>
+                                            <p class="text-muted">University of Lagos</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h5>B.Tech. in Computer Science</h5>
+                                            <p class="text-muted">Federal University of Technology, Akure</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h3>Research Focus</h3>
+                                <p>My research centers on developing innovative solutions to security challenges in cloud computing environments, with a focus on:</p>
+                                <ul>
+                                    <li>Advanced cryptographic algorithms</li>
+                                    <li>Secure data sharing protocols</li>
+                                    <li>Access control mechanisms</li>
+                                    <li>Machine learning applications in cybersecurity</li>
+                                    <li>Data privacy preservation</li>
+                                </ul>
+                                
+                                <h4 class="mt-4">Professional Certifications</h4>
+                                <ul>
+                                    <li>Cybersecurity - Ethical Hacking (New Horizon)</li>
+                                    <li>Fundamentals of Encryption & Quantum-Safe Techniques (IBM)</li>
+                                    <li>Serverless Computing Using Cloud Functions (IBM)</li>
+                                    <li>Data Privacy Fundamentals (IBM)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section id="teaching" class="teaching">
+        <div class="container">
+            <h2 class="section-title">Teaching Portfolio</h2>
+            <div class="teaching-section">
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="level-card">
+                            <h4 class="text-center"><i class="fas fa-user-graduate me-2"></i>Ph.D. Level</h4>
+                            <ul>
+                                <li>Advanced Theory and Formal Models of Computation</li>
+                                <li>Research Methodologies in Cybersecurity</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="level-card">
+                            <h4 class="text-center"><i class="fas fa-user-graduate me-2"></i>M.Sc. Level</h4>
+                            <ul>
+                                <li>Advanced Cryptography</li>
+                                <li>Cloud Security Architectures</li>
+                                <li>Machine Learning for Security</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="level-card">
+                            <h4 class="text-center"><i class="fas fa-user-graduate me-2"></i>Undergraduate</h4>
+                            <ul>
+                                <li>Cyber Crime Law and Counter Measures</li>
+                                <li>Information Security Policy</li>
+                                <li>Network Administration & Security</li>
+                                <li>Information Disaster Recovery</li>
+                                <li>Ethical Hacking and Reverse Engineering</li>
+                                <li>VoIP and Multimedia Security</li>
+                                <li>Algorithms and Complexity Analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h4 class="mb-4">Postgraduate Supervision</h4>
+                    <p>Currently supervising a Ph.D. candidate researching:</p>
+                    <p><em>"A Machine Learning Model for Early Detection of Students at Risk of Dropping Out Using Psychosocial Data"</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research bg-light">
+        <div class="container">
+            <h2 class="section-title">Research Output</h2>
+            
+            <div class="row mb-5">
+                <div class="col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="project-content">
+                            <h4>Hybrid Cryptographic Algorithm</h4>
+                            <p class="text-muted">Ph.D. Research</p>
+                            <p>Developed a hybrid-based cryptographic algorithm for enhanced cloud data security.</p>
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projectModal1">Research Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1623341215095-6a4b0b7b254e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="project-content">
+                            <h4>Biometric Authentication</h4>
+                            <p class="text-muted">Undergraduate Research</p>
+                            <p>Evaluated biometric authentication schemes for enhanced security systems.</p>
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projectModal3">Research Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="mb-4 mt-5 text-center">Selected Publications</h3>
+            
+            <div class="publication-item">
+                <span class="pub-type">Journal Article</span>
+                <h5>Design of Hybrid-Based Cryptographic Algorithm for Cloud Data Security</h5>
+                <p>Adeduro, O.O., Eze, M.O., Ayankoya, F.Y., and Ebiesuwa, O. (2023)</p>
+                <p><em>International Research Journal of Mathematics and Computer Science</em></p>
+            </div>
+            
+            <div class="publication-item">
+                <span class="pub-type">Journal Article</span>
+                <h5>Hybridization Techniques for Enhanced Data Security in Cloud Computing – A Review</h5>
+                <p>Eze, M.O., Adeduro, O.O., Ayankoya, F.Y., and Ebiesuwa, O. (2023)</p>
+                <p><em>International American Journal of Computer Sciences and Applications</em></p>
+            </div>
+            
+            <div class="publication-item">
+                <span class="pub-type">Conference Paper</span>
+                <h5>Cyberattacks: Building and Managing Effective Policy Framework for SMEs in Nigeria</h5>
+                <p>Adeduro, O.O. & Oladapo, K (2019)</p>
+                <p><em>Proceedings of the International Conference on Information Technology in Education and Development (ITED)</em></p>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary">View All Publications</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Academic Leadership</h2>
+            
+            <div class="experience-item">
+                <div class="d-flex justify-content-between">
+                    <h4>Head of Department, Cybersecurity</h4>
+                    <span class="badge bg-primary">Aug 2024 - Present</span>
+                </div>
+                <p class="text-muted">McPherson University, Seriki-Sotayo, Ogun State</p>
+                <ul>
+                    <li>Leading the Department of Cybersecurity at McPherson University</li>
+                    <li>Developing curriculum and academic programs</li>
+                    <li>Overseeing faculty development and research initiatives</li>
+                    <li>Chairing departmental committees and strategic planning</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="d-flex justify-content-between">
+                    <h4>Lecturer I</h4>
+                    <span class="badge bg-primary">Mar 2024 - Jul 2024</span>
+                </div>
+                <p class="text-muted">Department of Computer Science, McPherson University</p>
+                <ul>
+                    <li>Taught advanced courses in computation theory and e-commerce technology</li>
+                    <li>Supervised undergraduate research projects</li>
+                    <li>Contributed to curriculum development</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="d-flex justify-content-between">
+                    <h4>Research Assistant</h4>
+                    <span class="badge bg-primary">Jan 2019 - Dec 2022</span>
+                </div>
+                <p class="text-muted">Babcock University, Ilishan-Remo, Ogun State</p>
+                <ul>
+                    <li>Conducted research project assessments for postgraduate students</li>
+                    <li>Collaborated on preparing research findings for conferences and journals</li>
+                    <li>Assisted in developing research proposals and methodologies</li>
+                </ul>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary" id="downloadCV2">Download Academic CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title text-white">Academic Contact</h2>
+            <div class="row">
+                <div class="col-lg-7 mb-4">
+                    <div class="contact-form">
+                        <h3 class="mb-4">Send Academic Inquiry</h3>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Institution/Organization">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select">
+                                    <option selected>Nature of Inquiry</option>
+                                    <option>Research Collaboration</option>
+                                    <option>Academic Consultation</option>
+                                    <option>Invitation to Speak</option>
+                                    <option>Student Supervision</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h3 class="mb-4">Academic Contact Information</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>
+                                <h5>Department</h5>
+                                <p>Department of Cybersecurity</p>
+                                <p>McPherson University</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Campus Address</h5>
+                                <p>Seriki-Sotayo, Ogun State, Nigeria</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Academic Email</h5>
+                                <p>adedurooo@mcu.edu.ng</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <h5 class="mb-3">Academic Profiles</h5>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#"><i class="fab fa-researchgate"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-orcid"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h4>Dr. Oladapo Adeduro</h4>
+                    <p>Head of Department, Cybersecurity | McPherson University</p>
+                </div>
+                <div class="col-lg-6 mb-4 text-lg-end">
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-google-scholar"></i></a>
+                        <a href="#"><i class="fab fa-researchgate"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright text-center">
+                <p>&copy; 2025 Department of Cybersecurity, McPherson University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div class="modal fade" id="projectModal1" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hybrid-Based Cryptographic Algorithm for Cloud Data Security</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid mb-4" alt="Project">
+                    <p><strong>Ph.D. Research | Babcock University</strong></p>
+                    <p>This research developed a novel hybrid cryptographic algorithm that combines symmetric and asymmetric encryption techniques to enhance cloud data security. The algorithm addresses key challenges in cloud storage including data privacy, access control, and secure data sharing.</p>
+                    <p><strong>Key Contributions:</strong></p>
+                    <ul>
+                        <li>Proposed a hybrid encryption model that optimizes performance and security</li>
+                        <li>Implemented a dynamic key management system for enhanced security</li>
+                        <li>Conducted extensive security analysis and performance evaluation</li>
+                        <li>Published findings in peer-reviewed journals</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="projectModal3" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Evaluation of Biometric Authentication Scheme</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1623341215095-6a4b0b7b254e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid mb-4" alt="Project">
+                    <p><strong>Undergraduate Research | FUT Akure</strong></p>
+                    <p>This research evaluated various biometric authentication schemes to determine their effectiveness, security, and usability in different application contexts.</p>
+                    <p><strong>Research Focus:</strong></p>
+                    <ul>
+                        <li>Comparative analysis of fingerprint, iris, and facial recognition systems</li>
+                        <li>Evaluation of false acceptance and rejection rates</li>
+                        <li>Security vulnerability assessment</li>
+                        <li>Usability testing in different environments</li>
+                        <li>Recommendations for implementation in secure systems</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Navbar active state
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // CV Download
+        document.getElementById('downloadCV').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Academic CV download would start now. In a real implementation, this would download your CV file.');
+        });
+        
+        document.getElementById('downloadCV2').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Academic CV download would start now. In a real implementation, this would download your CV file.');
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your academic inquiry! I will respond within 2 business days.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
